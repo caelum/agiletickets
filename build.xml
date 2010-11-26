@@ -1,0 +1,110 @@
+<project name="vraptor-scaffold" default="war" xmlns:ivy="antlib:org.apache.ivy.ant">
+
+	<property file="build.properties" />
+
+	<!-- paths -->
+	<path id="lib.path.id">
+		<fileset dir="${lib.dir}" />
+		<fileset dir="lib/provided" />
+	</path>
+	<path id="test.path.id">
+		<fileset dir="lib/test" />
+		<path refid="lib.path.id" />
+		<pathelement location="${test.build.dir}" />
+		<pathelement location="${build.dir}" />
+	</path>
+
+	<!-- ================================= 
+          target: resolve              
+         ================================= -->
+	<target name="resolve" description="--> retrieve dependencies with ivy">
+		<path id="ivy.lib.path">
+			<pathelement location="${ivy.jar.file}" />
+		</path>
+		<taskdef resource="org/apache/ivy/ant/antlib.xml" uri="antlib:org.apache.ivy.ant" classpathref="ivy.lib.path" />
+
+		<ivy:retrieve pattern="lib/[conf]/[artifact]-[revision].[ext]" sync="true" />
+		<delete dir="${lib.dir}" includes="**/*.*" />
+		<copy todir="${lib.dir}">
+			<fileset dir="lib/default">
+				<include name="*.jar" />
+			</fileset>
+		</copy>
+	</target>
+
+	<!-- ================================= 
+          target: compile
+         ================================= -->
+	<target name="compile" depends="resolve" description="--> compile">
+		<mkdir dir="${build.dir}" />
+		<delete dir="${build.dir}" includes="**/*.*" />
+		<javac srcdir="${src.dir}" destdir="${build.dir}" classpathref="lib.path.id" debug="on" />
+		<copy todir="${build.dir}">
+			<fileset dir="${resources.dir}">
+				<include name="**/*.*" />
+			</fileset>
+		</copy>
+	</target>
+
+	<!-- ================================= 
+	      target: compile test
+	     ================================= -->
+	<target name="compile-test" depends="compile" description="--> compile test">
+		<mkdir dir="${test.build.dir}" />
+		<delete dir="${test.build.dir}" includes="**/*.*" />
+		<javac srcdir="${test.src.dir}" destdir="${test.build.dir}" classpathref="test.path.id" debug="on" />
+		<copy todir="${test.build.dir}">
+			<fileset dir="${test.resources.dir}">
+				<include name="**/*.*" />
+			</fileset>
+		</copy>
+	</target>
+
+	<!-- ================================= 
+          target: run tests
+         ================================= -->
+	<target name="test" depends="compile-test" description="--> run all tests">
+		<mkdir dir="${output.dir}/test-results" />
+		<junit haltonfailure="yes">
+			<batchtest fork="yes" todir="${output.dir}/test-results">
+				<fileset dir="${test.src.dir}">
+					<include name="**/*Test.java" />
+				</fileset>
+			</batchtest>
+			<formatter type="brief" usefile="false" />
+			<formatter type="xml" />
+			<classpath refid="test.path.id" />
+		</junit>
+	</target>
+
+	<!-- ================================= 
+          target: war
+         ================================= -->
+	<target name="war" description="--> generate war file" depends="test">
+		<war destfile="${output.dir}/${project.name}.war">
+			<zipfileset dir="${webapp.dir}" />
+		</war>
+	</target>
+
+	<!-- ================================= 
+          target: jetty.run              
+         ================================= -->
+	<target name="jetty.run" description="--> run jetty server" depends="compile">
+		<path id="jetty.path.id">
+			<fileset dir="lib/jetty" />
+		</path>
+		<taskdef classpathref="jetty.path.id" resource="tasks.properties" loaderref="jetty.loader" />
+		<jetty tempDirectory="${output.dir}/jetty-temp">
+			<webApp name="${project.name}" warfile="${webapp.dir}" contextpath="/" scanIntervalSeconds="3" />
+		</jetty>
+	</target>
+
+	<!-- ================================= 
+          target: report              
+         ================================= -->
+	<target name="report" depends="resolve" description="--> generates a report of dependencies">
+		<mkdir dir="${output.dir}/reports" />
+		<ivy:report todir="${output.dir}/reports" />
+	</target>
+
+</project>
