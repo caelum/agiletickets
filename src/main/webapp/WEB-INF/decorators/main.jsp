@@ -5,12 +5,20 @@
 <html>
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <title><decorator:title default="Vraptor Scaffold"/></title>
+    <title><decorator:title default="Ingresso Ágil"/></title>
     <link rel="stylesheet" type="text/css" href="<c:url value="/stylesheets/scaffold.css"/>" />  
     <decorator:head/>
   </head>
   <body>
-    <decorator:body/>
+  	<div id="header">
+  		<h1>Ingresso Ágil</h1>
+  	</div>
+  	<div id="content">
+	    <decorator:body/>
+  	</div>
+  	<div id="footer">
+  		Feito pela Caelum no curso PM-87
+  	</div>
     <script type="text/javascript" src="<c:url value="/javascripts/jquery.min.js"/>"></script>
   </body>
 </html>

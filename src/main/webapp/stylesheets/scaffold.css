@@ -1,9 +1,8 @@
-body { background-color: #fff; color: #333; }
+body { background-color: #ddd; color: #333; width: 960px; margin: 0 auto;}
 
 body, p, ol, ul, td {
   font-family: verdana, arial, helvetica, sans-serif;
   font-size:   13px;
-  line-height: 18px;
 }
 
 pre {
@@ -11,6 +10,25 @@ pre {
   padding: 10px;
   font-size: 11px;
 }
+
+#footer {
+	background-color: #800;
+	color: #fff;
+	border-top: 1px solid #fff;
+		
+}
+
+#header h1 {
+	margin:0;
+	padding: 10px;
+	background-color: #0c0;
+	color: #ddf;
+	}
+
+#content {
+	min-height: 400px;
+	background-color: #fff;
+	}
 
 a { color: #000; }
 a:visited { color: #666; }
