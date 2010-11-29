@@ -26,12 +26,12 @@
 	</filter>
 
 	<filter-mapping>
-		<filter-name>vraptor</filter-name>
+		<filter-name>sitemesh</filter-name>
 		<url-pattern>/*</url-pattern>
 	</filter-mapping>
-	
+
 	<filter-mapping>
-		<filter-name>sitemesh</filter-name>
+		<filter-name>vraptor</filter-name>
 		<url-pattern>/*</url-pattern>
 	</filter-mapping>
 	
