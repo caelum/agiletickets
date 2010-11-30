@@ -27,4 +27,12 @@ public class Estabelecimento {
 		return endereco;
 	}
 
+	public void setEndereco(String endereco) {
+		this.endereco = endereco;
+	}
+
+	public void setNome(String nome) {
+		this.nome = nome;
+	}
+
 }
