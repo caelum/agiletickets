@@ -1,5 +1,7 @@
 package br.com.caelum.agiletickets.models;
 
+import java.util.Locale;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -7,9 +9,13 @@ import javax.persistence.ManyToOne;
 
 import org.hibernate.annotations.Type;
 import org.joda.time.DateTime;
+import org.joda.time.format.DateTimeFormat;
+import org.joda.time.format.DateTimeFormatter;
 
 @Entity
 public class Sessao {
+
+	private static final DateTimeFormatter FORMATO_DIA = DateTimeFormat.shortDate().withLocale(new Locale("pt", "BR"));
 
 	@Id
 	@GeneratedValue
@@ -45,5 +51,9 @@ public class Sessao {
 
 	public void setDuracaoEmMinutos(Integer duracaoEmMinutos) {
 		this.duracaoEmMinutos = duracaoEmMinutos;
+	}
+
+	public String getDia() {
+		return inicio.toString(FORMATO_DIA);
 	}
 }
