@@ -9,6 +9,7 @@ import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
 @Entity
@@ -27,6 +28,9 @@ public class Espetaculo {
 
 	@OneToMany(mappedBy="espetaculo")
 	private List<Sessao> sessoes = newArrayList();
+
+	@ManyToOne
+	private Estabelecimento estabelecimento;
 
 	public Long getId() {
 		return id;
@@ -64,8 +68,8 @@ public class Espetaculo {
 		return sessoes;
 	}
 
-	public void setSessoes(List<Sessao> sessoes) {
-		this.sessoes = sessoes;
+	public void setEstabelecimento(Estabelecimento estabelecimento) {
+		this.estabelecimento = estabelecimento;
 	}
 
 }
