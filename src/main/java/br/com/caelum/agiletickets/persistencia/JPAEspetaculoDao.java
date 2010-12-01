@@ -43,4 +43,16 @@ public class JPAEspetaculoDao implements Agenda {
 	public Sessao sessao(Long sessaoId) {
 		return manager.find(Sessao.class, sessaoId);
 	}
+
+	@Override
+	public Espetaculo espetaculo(Long espetaculoId) {
+		return manager.find(Espetaculo.class, espetaculoId);
+	}
+
+	@Override
+	public void agende(List<Sessao> sessoes) {
+		for (Sessao sessao : sessoes) {
+			manager.persist(sessao);
+		}
+	}
 }

@@ -12,6 +12,9 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
+import org.joda.time.LocalDate;
+import org.joda.time.LocalTime;
+
 @Entity
 public class Espetaculo {
 
@@ -74,6 +77,10 @@ public class Espetaculo {
 
 	public Estabelecimento getEstabelecimento() {
 		return estabelecimento;
+	}
+
+	public List<Sessao> criaSessoes(LocalDate inicio, LocalDate fim, LocalTime horario, Periodicidade periodicidade) {
+		return null;
 	}
 
 }

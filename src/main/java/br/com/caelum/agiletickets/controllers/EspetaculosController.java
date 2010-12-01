@@ -1,10 +1,16 @@
 package br.com.caelum.agiletickets.controllers;
 
+import static br.com.caelum.vraptor.view.Results.status;
+
 import java.util.List;
+
+import org.joda.time.LocalDate;
+import org.joda.time.LocalTime;
 
 import br.com.caelum.agiletickets.domain.Agenda;
 import br.com.caelum.agiletickets.domain.DiretorioDeEstabelecimentos;
 import br.com.caelum.agiletickets.models.Espetaculo;
+import br.com.caelum.agiletickets.models.Periodicidade;
 import br.com.caelum.agiletickets.models.Sessao;
 import br.com.caelum.vraptor.Get;
 import br.com.caelum.vraptor.Path;
@@ -84,5 +90,34 @@ public class EspetaculosController {
 		result.include("message", "Sessao reservada com sucesso");
 
 		result.redirectTo(IndexController.class).index();
+	}
+
+	@Get @Path("/espetaculo/{espetaculoId}/sessoes")
+	public void sessoes(Long espetaculoId) {
+		Espetaculo espetaculo = carregaEspetaculo(espetaculoId);
+
+		result.include("espetaculo", espetaculo);
+	}
+
+
+	@Post @Path("/espetaculo/{espetaculoId}/sessoes")
+	public void cadastraSessoes(Long espetaculoId, LocalDate inicio, LocalDate fim, LocalTime horario, Periodicidade periodicidade) {
+		Espetaculo espetaculo = carregaEspetaculo(espetaculoId);
+
+		List<Sessao> sessoes = espetaculo.criaSessoes(inicio, fim, horario, periodicidade);
+
+		agenda.agende(sessoes);
+
+		result.include("message", sessoes.size() + " sessoes criadas com sucesso");
+		result.redirectTo(this).lista();
+	}
+
+	private Espetaculo carregaEspetaculo(Long espetaculoId) {
+		Espetaculo espetaculo = agenda.espetaculo(espetaculoId);
+		if (espetaculo == null) {
+			validator.add(new ValidationMessage("", ""));
+		}
+		validator.onErrorUse(status()).notFound();
+		return espetaculo;
 	}
 }
