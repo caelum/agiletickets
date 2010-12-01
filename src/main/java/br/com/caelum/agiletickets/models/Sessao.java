@@ -93,4 +93,8 @@ public class Sessao {
 	public void reserva(Integer lugares) {
 		this.lugaresReservados += lugares;
 	}
+
+	public boolean podeReservar(Integer quantidade) {
+		return getLugaresDisponiveis() > quantidade;
+	}
 }

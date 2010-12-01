@@ -15,6 +15,10 @@ public class Estabelecimento {
 
 	private String endereco;
 
+	public void setId(Long id) {
+		this.id = id;
+	}
+
 	public Long getId() {
 		return id;
 	}

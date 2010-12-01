@@ -19,6 +19,12 @@
 				<option value="BALLET">Balé</option>
 				<option value="ORQUESTRA">Orquestra</option>
 			</select>
+			<label for="tipo">Local:</label>
+			<select id="tipo" name="espetaculo.estabelecimento.id">
+				<c:forEach items="${estabelecimentos}" var="estabelecimento">
+					<option value="${estabelecimento.id}">${estabelecimento.nome }</option>
+				</c:forEach>
+			</select>
 			
 			<input type="submit" value="Adicionar"/>
 		</form>

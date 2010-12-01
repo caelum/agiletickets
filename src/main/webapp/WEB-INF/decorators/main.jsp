@@ -12,6 +12,11 @@
   <body>
   	<div id="header">
   		<h1>Ingresso Ágil</h1>
+  		<ul id="menu">
+  			<li><a href="/">Sessões</a></li>
+  			<li><a href="/espetaculos">Espetáculos</a></li>
+  			<li><a href="/estabelecimentos">Estabelecimentos</a></li>
+  		</ul>
   	</div>
   	<c:if test="${not empty errors}">
   		<ul id="errors">

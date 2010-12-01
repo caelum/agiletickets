@@ -3,6 +3,7 @@ package br.com.caelum.agiletickets.controllers;
 import java.util.List;
 
 import br.com.caelum.agiletickets.domain.Agenda;
+import br.com.caelum.agiletickets.domain.DiretorioDeEstabelecimentos;
 import br.com.caelum.agiletickets.models.Espetaculo;
 import br.com.caelum.agiletickets.models.Sessao;
 import br.com.caelum.vraptor.Get;
@@ -21,16 +22,18 @@ public class EspetaculosController {
 	private final Agenda agenda;
 	private Validator validator;
 	private Result result;
+	private final DiretorioDeEstabelecimentos estabelecimentos;
 
-	public EspetaculosController(Agenda agenda, Validator validator, Result result) {
-		super();
+	public EspetaculosController(Agenda agenda, DiretorioDeEstabelecimentos estabelecimentos, Validator validator, Result result) {
 		this.agenda = agenda;
+		this.estabelecimentos = estabelecimentos;
 		this.validator = validator;
 		this.result = result;
 	}
 
 	@Get @Path("/espetaculos")
 	public List<Espetaculo> lista() {
+		result.include("estabelecimentos", estabelecimentos.todos());
 		return agenda.espetaculos();
 	}
 
@@ -70,7 +73,8 @@ public class EspetaculosController {
 		if (quantidade < 1) {
 			validator.add(new ValidationMessage("Você deve escolher um lugar ou mais", ""));
 		}
-		if (quantidade >= sessao.getLugaresDisponiveis()) {
+
+		if (!sessao.podeReservar(quantidade)) {
 			validator.add(new ValidationMessage("Não existem lugares disponíveis", ""));
 		}
 
