@@ -13,4 +13,6 @@ public interface Agenda {
 
 	List<Sessao> proximasSessoes(int maximo);
 
+	Sessao sessao(Long sessaoId);
+
 }

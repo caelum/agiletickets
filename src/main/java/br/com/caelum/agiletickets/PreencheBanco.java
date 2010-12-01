@@ -38,6 +38,8 @@ public class PreencheBanco {
 			sessao.setEspetaculo(espetaculo);
 			sessao.setInicio(new DateTime().plusDays(7+i));
 			sessao.setDuracaoEmMinutos(60 * 3);
+			sessao.setTotalLugares(10);
+			sessao.setLugaresReservados(10 - i);
 			manager.persist(sessao);
 		}
 

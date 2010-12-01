@@ -20,6 +20,11 @@
 	  		</c:forEach>
   		</ul>
   	</c:if>
+  	<c:if test="${not empty message}">
+  		<div id="message">
+  			${message }
+  		</div>
+  	</c:if>
   	<div id="content">
 	    <decorator:body/>
   	</div>

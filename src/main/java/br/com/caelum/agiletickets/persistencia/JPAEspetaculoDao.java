@@ -38,4 +38,9 @@ public class JPAEspetaculoDao implements Agenda {
 					.setMaxResults(maximo)
 					.getResultList();
 	}
+
+	@Override
+	public Sessao sessao(Long sessaoId) {
+		return manager.find(Sessao.class, sessaoId);
+	}
 }

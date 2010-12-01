@@ -4,7 +4,11 @@
 	<h2>Próximas sessões</h2>
 	<ul>
 	<c:forEach items="${sessoes}" var="sessao">
-		<li>${sessao.dia} - ${sessao.espetaculo.nome }</li>
+		<li>
+			<a href="/sessao/${sessao.id}">
+				${sessao.dia} - ${sessao.espetaculo.nome } - Lugares: ${sessao.totalLugares - sessao.lugaresReservados}
+			</a>
+		</li>
 	</c:forEach>
 	</ul>
 </body>

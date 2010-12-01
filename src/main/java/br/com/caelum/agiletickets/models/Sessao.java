@@ -16,6 +16,7 @@ import org.joda.time.format.DateTimeFormatter;
 public class Sessao {
 
 	private static final DateTimeFormatter FORMATO_DIA = DateTimeFormat.shortDate().withLocale(new Locale("pt", "BR"));
+	private static final DateTimeFormatter FORMATO_HORA = DateTimeFormat.shortTime().withLocale(new Locale("pt", "BR"));
 
 	@Id
 	@GeneratedValue
@@ -28,6 +29,14 @@ public class Sessao {
 	private DateTime inicio;
 
 	private Integer duracaoEmMinutos;
+
+	private Integer totalLugares;
+
+	private Integer lugaresReservados = 0;
+
+	public Long getId() {
+		return id;
+	}
 
 	public void setEspetaculo(Espetaculo espetaculo) {
 		this.espetaculo = espetaculo;
@@ -55,5 +64,33 @@ public class Sessao {
 
 	public String getDia() {
 		return inicio.toString(FORMATO_DIA);
+	}
+
+	public String getHora() {
+		return inicio.toString(FORMATO_HORA);
+	}
+
+	public Integer getTotalLugares() {
+		return totalLugares;
+	}
+
+	public void setTotalLugares(Integer totalLugares) {
+		this.totalLugares = totalLugares;
+	}
+
+	public Integer getLugaresReservados() {
+		return lugaresReservados;
+	}
+
+	public void setLugaresReservados(Integer lugaresReservados) {
+		this.lugaresReservados = lugaresReservados;
+	}
+
+	public Integer getLugaresDisponiveis() {
+		return totalLugares - lugaresReservados;
+	}
+
+	public void reserva(Integer lugares) {
+		this.lugaresReservados += lugares;
 	}
 }

@@ -72,4 +72,8 @@ public class Espetaculo {
 		this.estabelecimento = estabelecimento;
 	}
 
+	public Estabelecimento getEstabelecimento() {
+		return estabelecimento;
+	}
+
 }
