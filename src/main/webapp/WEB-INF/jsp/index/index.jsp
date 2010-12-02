@@ -6,7 +6,7 @@
 	<c:forEach items="${sessoes}" var="sessao">
 		<li>
 			<a href="/sessao/${sessao.id}">
-				${sessao.dia} - ${sessao.espetaculo.nome } - Lugares: ${sessao.totalLugares - sessao.lugaresReservados}
+				${sessao.dia} - ${sessao.espetaculo.nome } - Ingressos Disponíveis: ${sessao.ingressosDisponiveis}
 			</a>
 		</li>
 	</c:forEach>

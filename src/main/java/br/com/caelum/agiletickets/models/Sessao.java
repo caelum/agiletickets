@@ -30,9 +30,9 @@ public class Sessao {
 
 	private Integer duracaoEmMinutos;
 
-	private Integer totalLugares;
+	private Integer totalIngressos;
 
-	private Integer lugaresReservados = 0;
+	private Integer ingressosReservados = 0;
 
 	public Long getId() {
 		return id;
@@ -70,31 +70,31 @@ public class Sessao {
 		return inicio.toString(FORMATO_HORA);
 	}
 
-	public Integer getTotalLugares() {
-		return totalLugares;
+	public Integer getTotalIngressos() {
+		return totalIngressos;
 	}
 
-	public void setTotalLugares(Integer totalLugares) {
-		this.totalLugares = totalLugares;
+	public void setTotalIngressos(Integer totalIngressos) {
+		this.totalIngressos = totalIngressos;
 	}
 
-	public Integer getLugaresReservados() {
-		return lugaresReservados;
+	public Integer getIngressosReservados() {
+		return ingressosReservados;
 	}
 
-	public void setLugaresReservados(Integer lugaresReservados) {
-		this.lugaresReservados = lugaresReservados;
+	public void setIngressosReservados(Integer ingressosReservados) {
+		this.ingressosReservados = ingressosReservados;
 	}
 
-	public Integer getLugaresDisponiveis() {
-		return totalLugares - lugaresReservados;
+	public Integer getIngressosDisponiveis() {
+		return totalIngressos - ingressosReservados;
 	}
 
-	public void reserva(Integer lugares) {
-		this.lugaresReservados += lugares;
+	public void reserva(Integer numeroDeIngressos) {
+		this.ingressosReservados += numeroDeIngressos;
 	}
 
-	public boolean podeReservar(Integer quantidade) {
-		return getLugaresDisponiveis() > quantidade;
+	public boolean podeReservar(Integer numeroDeIngressos) {
+		return getIngressosDisponiveis() > numeroDeIngressos;
 	}
 }

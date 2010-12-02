@@ -81,7 +81,7 @@ public class EspetaculosController {
 		}
 
 		if (!sessao.podeReservar(quantidade)) {
-			validator.add(new ValidationMessage("Não existem lugares disponíveis", ""));
+			validator.add(new ValidationMessage("Não existem ingressos disponíveis", ""));
 		}
 
 		validator.onErrorRedirectTo(this).sessao(sessao.getId());
