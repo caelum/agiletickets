@@ -14,7 +14,11 @@ import br.com.caelum.vraptor.util.jpa.EntityManagerFactoryCreator;
 public class PreencheBanco {
 
 	public static void main(String[] args) {
-		EntityManager manager = createEntityManager();
+		EntityManagerFactoryCreator creator = new EntityManagerFactoryCreator();
+		creator.create();
+		EntityManagerCreator managerCreator = new EntityManagerCreator(creator.getInstance());
+		managerCreator.create();
+		EntityManager manager = managerCreator.getInstance();
 
 		manager.getTransaction().begin();
 		manager.createQuery("delete from Sessao").executeUpdate();
@@ -45,14 +49,5 @@ public class PreencheBanco {
 
 		manager.getTransaction().commit();
 		manager.close();
-	}
-
-	private static EntityManager createEntityManager() {
-		EntityManagerFactoryCreator creator = new EntityManagerFactoryCreator();
-		creator.create();
-		EntityManagerCreator managerCreator = new EntityManagerCreator(creator.getInstance());
-		managerCreator.create();
-		EntityManager manager = managerCreator.getInstance();
-		return manager;
 	}
 }
