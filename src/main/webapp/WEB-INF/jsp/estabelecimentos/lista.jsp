@@ -15,7 +15,7 @@
 			<input type="submit" value="Adicionar"/>
 		</form>
 		
-		<table border="1">
+		<table id="lista" border="1">
 			<caption>Lista de estabelecimentos</caption>
 			<thead>
 				<tr>
