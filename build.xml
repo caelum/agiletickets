@@ -1,4 +1,4 @@
-<project name="vraptor-scaffold" default="war" xmlns:ivy="antlib:org.apache.ivy.ant">
+<project name="agiletickets" default="war" xmlns:ivy="antlib:org.apache.ivy.ant">
 
 	<property file="build.properties" />
 
