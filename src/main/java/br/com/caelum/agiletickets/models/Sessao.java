@@ -10,13 +10,9 @@ import javax.persistence.ManyToOne;
 import org.hibernate.annotations.Type;
 import org.joda.time.DateTime;
 import org.joda.time.format.DateTimeFormat;
-import org.joda.time.format.DateTimeFormatter;
 
 @Entity
 public class Sessao {
-
-	private static final DateTimeFormatter FORMATO_DIA = DateTimeFormat.shortDate().withLocale(new Locale("pt", "BR"));
-	private static final DateTimeFormatter FORMATO_HORA = DateTimeFormat.shortTime().withLocale(new Locale("pt", "BR"));
 
 	@Id
 	@GeneratedValue
@@ -63,11 +59,11 @@ public class Sessao {
 	}
 
 	public String getDia() {
-		return inicio.toString(FORMATO_DIA);
+		return inicio.toString(DateTimeFormat.shortDate().withLocale(new Locale("pt", "BR")));
 	}
 
 	public String getHora() {
-		return inicio.toString(FORMATO_HORA);
+		return inicio.toString(DateTimeFormat.shortTime().withLocale(new Locale("pt", "BR")));
 	}
 
 	public Integer getTotalIngressos() {
