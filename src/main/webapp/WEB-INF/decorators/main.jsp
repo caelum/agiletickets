@@ -10,7 +10,7 @@
     <decorator:head/>
   </head>
   <body>
-  	<div id="header">
+  	<div id="header" class="clearfix">
   		<h1>Ingresso Ágil</h1>
   		<ul id="menu">
   			<li><a href="/">Sessões</a></li>

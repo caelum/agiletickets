@@ -5,7 +5,7 @@
 	</head>
 	<body>
 		
-		<a href="#addForm">Adicionar Espetaculo</a>
+		<h2>Adicionar Espetaculo</h2>
 		<form id="addForm" action="" method="post">
 			<label for="nome">Nome:</label>
 			<input type="text" name="espetaculo.nome" id="nome"/>
@@ -29,14 +29,22 @@
 			<input type="submit" value="Adicionar"/>
 		</form>
 		
-		<table border="1">
+		<table cellpadding="0" cellspacing="0" width="100%">
 			<caption>Lista de espetáculos</caption>
+			<colgroup>
+			  <col width="5%">
+			  <col width="40%">
+			  <col width="30%">
+			  <col width="10%">
+			  <col width="15%">
+			</colgroup>
 			<thead>
 				<tr>
 					<th>Id</th>
 					<th>Nome</th>
 					<th>Descrição</th>
 					<th>Tipo</th>
+					<th></th>
 				</tr>
 			</thead>
 			<tbody>

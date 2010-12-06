@@ -8,14 +8,14 @@
 	<body>
 		<h1>${sessao.espetaculo.nome }</h1>
 		<h2>${sessao.dia } às ${sessao.hora}</h2>
-		<p>Local: ${sessao.espetaculo.estabelecimento.nome }</p>
-		<p>Endereço: ${sessao.espetaculo.estabelecimento.endereco }</p>
-		<p>Descrição: ${sessao.espetaculo.descricao }</p>
-		<p>Duração: ${sessao.duracaoEmMinutos } minutos</p>
-		<p>Ingressos disponíveis: ${sessao.ingressosDisponiveis }</p>
+		<p><span class="label">Local:</span> ${sessao.espetaculo.estabelecimento.nome }</p>
+		<p><span class="label">Endereço:</span> ${sessao.espetaculo.estabelecimento.endereco }</p>
+		<p><span class="label">Descrição:</span> ${sessao.espetaculo.descricao }</p>
+		<p><span class="label">Duração:</span> ${sessao.duracaoEmMinutos } minutos</p>
+		<p><span class="label">Ingressos disponíveis:</span> ${sessao.ingressosDisponiveis }</p>
 		<c:if test="${sessao.ingressosDisponiveis gt 0}">
-			<h3>Reservar ingresso</h3>
 			<form action="/sessao/${sessao.id}/reserva" method="post">
+				<h3>Reservar ingresso</h3>
 				<label for="qtde">Quantidade</label>
 				<input id="qtde" name="quantidade"/>
 				

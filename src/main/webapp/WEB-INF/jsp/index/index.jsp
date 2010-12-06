@@ -2,7 +2,7 @@
 <html>
 <body>
 	<h2>Próximas sessões</h2>
-	<ul>
+	<ul id="sessoes">
 	<c:forEach items="${sessoes}" var="sessao">
 		<li>
 			<a href="/sessao/${sessao.id}">
