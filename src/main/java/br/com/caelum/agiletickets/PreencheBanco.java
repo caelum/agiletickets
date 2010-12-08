@@ -25,14 +25,13 @@ public class PreencheBanco {
 		manager.createQuery("delete from Espetaculo").executeUpdate();
 		manager.createQuery("delete from Estabelecimento").executeUpdate();
 		Estabelecimento estabelecimento = new Estabelecimento();
-		estabelecimento.setNome("Casa da mãe Joana");
-		estabelecimento.setEndereco("Rua da vovó. Casa ao lado.");
+		estabelecimento.setNome("Kred Car Roll");
+		estabelecimento.setEndereco("Rua dos Silveiras, 12345");
 
 		Espetaculo espetaculo = new Espetaculo();
 		espetaculo.setEstabelecimento(estabelecimento);
-		espetaculo.setNome("O mundo maravilhoso dos unicórnios e arco-íris");
-		espetaculo.setTipo(TipoDeEspetaculo.BALLET);
-
+		espetaculo.setNome("Reis Tart e sua banda");
+		espetaculo.setTipo(TipoDeEspetaculo.SHOW);
 
 		manager.persist(estabelecimento);
 		manager.persist(espetaculo);
