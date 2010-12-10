@@ -15,6 +15,8 @@ public class Estabelecimento {
 
 	private String endereco;
 
+	private Boolean temEstacionamento = false;
+
 	public void setId(Long id) {
 		this.id = id;
 	}
@@ -37,6 +39,14 @@ public class Estabelecimento {
 
 	public void setNome(String nome) {
 		this.nome = nome;
+	}
+
+	public void setTemEstacionamento(boolean temEstacionamento) {
+		this.temEstacionamento = temEstacionamento;
+	}
+
+	public boolean isTemEstacionamento() {
+		return temEstacionamento != null && temEstacionamento;
 	}
 
 }
