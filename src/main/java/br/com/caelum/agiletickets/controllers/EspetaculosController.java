@@ -2,7 +2,11 @@ package br.com.caelum.agiletickets.controllers;
 
 import static br.com.caelum.vraptor.view.Results.status;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.joda.time.LocalDate;
 import org.joda.time.LocalTime;
@@ -12,6 +16,7 @@ import br.com.caelum.agiletickets.domain.DiretorioDeEstabelecimentos;
 import br.com.caelum.agiletickets.models.Espetaculo;
 import br.com.caelum.agiletickets.models.Estabelecimento;
 import br.com.caelum.agiletickets.models.Periodicidade;
+import br.com.caelum.agiletickets.models.Promocao;
 import br.com.caelum.agiletickets.models.Sessao;
 import br.com.caelum.vraptor.Get;
 import br.com.caelum.vraptor.Path;
@@ -97,16 +102,28 @@ public class EspetaculosController {
 
 	@Get @Path("/espetaculo/{espetaculoId}/sessoes")
 	public void sessoes(Long espetaculoId) {
-		Espetaculo espetaculo = carregaEspetaculo(espetaculoId);
+		Espetaculo espetaculo = agenda.espetaculo(espetaculoId);
+		if (espetaculo == null) {
+			validator.add(new ValidationMessage("", ""));
+		}
+		validator.onErrorUse(status()).notFound();
 
+		
+		
 		result.include("espetaculo", espetaculo);
 	}
 
 
 	@Post @Path("/espetaculo/{espetaculoId}/sessoes")
 	public void cadastraSessoes(Long espetaculoId, LocalDate inicio, LocalDate fim, LocalTime horario, Periodicidade periodicidade) {
-		Espetaculo espetaculo = carregaEspetaculo(espetaculoId);
+		Espetaculo espetaculo = agenda.espetaculo(espetaculoId);
+		if (espetaculo == null) {
+			validator.add(new ValidationMessage("", ""));
+		}
+		validator.onErrorUse(status()).notFound();
 
+		
+		
 		List<Sessao> sessoes = espetaculo.criaSessoes(inicio, fim, horario, periodicidade);
 
 		agenda.agende(sessoes);
@@ -114,14 +131,30 @@ public class EspetaculosController {
 		result.include("message", sessoes.size() + " sessoes criadas com sucesso");
 		result.redirectTo(this).lista();
 	}
-
-	private Espetaculo carregaEspetaculo(Long espetaculoId) {
-		Espetaculo espetaculo = agenda.espetaculo(espetaculoId);
-		if (espetaculo == null) {
-			validator.add(new ValidationMessage("", ""));
+	
+	@Get @Path("/asdsdfg")
+	public void promocoesDisponiveisParaEspetaculo() {
+		//Martin Fowler -> Transaction Scripting
+		
+		List<Promocao> todasPromocoes = new ArrayList<Promocao>(); 		//pega do banco
+		Espetaculo espetaculo = new Espetaculo();						//pega do banco
+		
+		Map<Promocao, List<Sessao>> sessoesPromocionais = new HashMap<Promocao, List<Sessao>>();
+		
+		for(Promocao promocao: todasPromocoes) {
+			for(Sessao s : espetaculo.getSessoes()) {
+				if(promocao.isSempre() || s.getIngressosDisponiveis() <= s.getTotalIngressos()*0.1) {
+					if( s.getInicio().isAfter(promocao.getInicio()) && s.getInicio().isBefore(promocao.getFim()) ) {
+						if(sessoesPromocionais.containsKey(promocao)) {
+							 sessoesPromocionais.get(promocao).add(s);
+						} else {
+							sessoesPromocionais.put(promocao, new ArrayList<Sessao>(Arrays.asList(s)));
+						}
+					}
+				}
+			}
 		}
-		validator.onErrorUse(status()).notFound();
-		return espetaculo;
+		result.include("promocoes", sessoesPromocionais);
 	}
 
 	private Estabelecimento criaEstabelecimento(Long id) {

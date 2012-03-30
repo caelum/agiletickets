@@ -1,5 +1,8 @@
 package br.com.caelum.agiletickets.models;
 
+import static org.hamcrest.Matchers.is;
+import static org.junit.Assert.assertThat;
+
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -29,5 +32,7 @@ public class SessaoTest {
 
 		sessao.reserva(3);
 		Assert.assertEquals(2, sessao.getIngressosDisponiveis().intValue());
+		
+		assertThat(sessao.getIngressosDisponiveis().intValue(), is(2));
 	}
 }

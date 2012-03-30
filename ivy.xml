@@ -29,6 +29,7 @@
 		<!-- Test dependencies -->
 		<dependency org="junit" name="junit" rev="4.8.2" conf="test->default" />
 		<dependency org="org.mockito" name="mockito-all" rev="1.8.5" conf="test->default" />
+		<dependency org="net.sourceforge.htmlunit" name="webdriver"  rev="2.6" conf="test->default" />
 
 		<!-- Jetty dependencies -->
 		<dependency org="org.mortbay.jetty" name="jsp-api-2.1" rev="6.1.14" conf="jetty->default" />
