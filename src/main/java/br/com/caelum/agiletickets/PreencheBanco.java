@@ -13,6 +13,7 @@ import br.com.caelum.vraptor.util.jpa.EntityManagerFactoryCreator;
 
 public class PreencheBanco {
 
+	// ALUNO: Não apague essa classe
 	public static void main(String[] args) {
 		EntityManagerFactoryCreator creator = new EntityManagerFactoryCreator();
 		creator.create();
