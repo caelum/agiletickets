@@ -18,12 +18,9 @@ public class Estabelecimento {
 	// atributo endereco
 	private String endereco;
 
-<<<<<<< HEAD
-	// todos os getters e setters
-=======
 	private Boolean temEstacionamento = false;
 
->>>>>>> origin/estacionamento
+	// todos os getters e setters
 	public void setId(Long id) {
 		this.id = id;
 	}
