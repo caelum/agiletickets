@@ -42,17 +42,21 @@ public class EspetaculosController {
 
 	@Get @Path("/espetaculos")
 	public List<Espetaculo> lista() {
+		// inclui a lista de estabelecimentos
 		result.include("estabelecimentos", estabelecimentos.todos());
 		return agenda.espetaculos();
 	}
 
 	@Post @Path("/espetaculos")
 	public void adiciona(Espetaculo espetaculo) {
+		// aqui eh onde fazemos as varias validacoes
+		// se nao tiver nome, avisa o usuario
+		// se nao tiver descricao, avisa o usuario
 		if (Strings.isNullOrEmpty(espetaculo.getNome())) {
-			validator.add(new ValidationMessage("Nome do espetáculo não pode estar em branco", ""));
+			validator.add(new ValidationMessage("Nome do espetáculo nao pode estar em branco", ""));
 		}
 		if (Strings.isNullOrEmpty(espetaculo.getDescricao())) {
-			validator.add(new ValidationMessage("Descrição do espetáculo não pode estar em branco", ""));
+			validator.add(new ValidationMessage("Descricao do espetaculo nao pode estar em branco", ""));
 		}
 		validator.onErrorRedirectTo(this).lista();
 
@@ -80,13 +84,14 @@ public class EspetaculosController {
 		}
 
 		if (quantidade < 1) {
-			validator.add(new ValidationMessage("Você deve escolher um lugar ou mais", ""));
+			validator.add(new ValidationMessage("Voce deve escolher um lugar ou mais", ""));
 		}
 
 		if (!sessao.podeReservar(quantidade)) {
-			validator.add(new ValidationMessage("Não existem ingressos disponíveis", ""));
+			validator.add(new ValidationMessage("Nao existem ingressos dispon√≠veis", ""));
 		}
 
+		// em caso de erro, redireciona para a lista de sessao
 		validator.onErrorRedirectTo(this).sessao(sessao.getId());
 
 		sessao.reserva(quantidade);
@@ -107,6 +112,8 @@ public class EspetaculosController {
 	public void cadastraSessoes(Long espetaculoId, LocalDate inicio, LocalDate fim, LocalTime horario, Periodicidade periodicidade) {
 		Espetaculo espetaculo = carregaEspetaculo(espetaculoId);
 
+		// aqui faz a magica!
+		// cria sessoes baseado no periodo de inicio e fim passados pelo usuario
 		List<Sessao> sessoes = espetaculo.criaSessoes(inicio, fim, horario, periodicidade);
 
 		agenda.agende(sessoes);
@@ -124,6 +131,7 @@ public class EspetaculosController {
 		return espetaculo;
 	}
 
+	// metodo antigo. aqui soh por backup
 	private Estabelecimento criaEstabelecimento(Long id) {
 		return estabelecimentos.todos().get(0);
 	}

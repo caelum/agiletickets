@@ -34,6 +34,7 @@ public class EstabelecimentosController {
 
 	@Post @Path("/estabelecimentos")
 	public void adiciona(final Estabelecimento estabelecimento) {
+		// validando!
 		validator.checking(new Validations() {{
 			that(!Strings.isNullOrEmpty(estabelecimento.getNome()), "estabelecimento.nome","nome.nulo");
 			that(!Strings.isNullOrEmpty(estabelecimento.getEndereco()), "estabelecimento.endereco","endereco.nulo");
