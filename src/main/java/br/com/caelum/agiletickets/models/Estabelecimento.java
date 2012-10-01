@@ -18,7 +18,12 @@ public class Estabelecimento {
 	// atributo endereco
 	private String endereco;
 
+<<<<<<< HEAD
 	// todos os getters e setters
+=======
+	private Boolean temEstacionamento = false;
+
+>>>>>>> origin/estacionamento
 	public void setId(Long id) {
 		this.id = id;
 	}
@@ -41,6 +46,14 @@ public class Estabelecimento {
 
 	public void setNome(String nome) {
 		this.nome = nome;
+	}
+
+	public void setTemEstacionamento(boolean temEstacionamento) {
+		this.temEstacionamento = temEstacionamento;
+	}
+
+	public boolean isTemEstacionamento() {
+		return temEstacionamento != null && temEstacionamento;
 	}
 
 }
