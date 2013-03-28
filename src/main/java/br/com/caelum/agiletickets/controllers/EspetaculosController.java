@@ -32,8 +32,8 @@ import com.google.common.base.Strings;
 public class EspetaculosController {
 
 	private final Agenda agenda;
-	private Validator validator;
-	private Result result;
+	private final Validator validator;
+	private final Result result;
 	private Estabelecimento estabelecimento;
 
 	private final DiretorioDeEstabelecimentos estabelecimentos;
@@ -63,7 +63,7 @@ public class EspetaculosController {
 		// se nao tiver descricao, avisa o usuario
 		if (Strings.isNullOrEmpty(espetaculo.getNome())) {
 			validator.add(new ValidationMessage(
-					"Nome do espet��culo nao pode estar em branco", ""));
+					"Nome do espetaculo nao pode estar em branco", ""));
 		}
 		if (Strings.isNullOrEmpty(espetaculo.getDescricao())) {
 			validator.add(new ValidationMessage(
@@ -102,7 +102,7 @@ public class EspetaculosController {
 
 		if (!sessao.podeReservar(quantidade)) {
 			validator.add(new ValidationMessage(
-					"Nao existem ingressos dispon������veis", ""));
+					"Nao existem ingressos disponiveis", ""));
 		}
 
 		// em caso de erro, redireciona para a lista de sessao
