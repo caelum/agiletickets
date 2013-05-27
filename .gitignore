@@ -1,4 +1,7 @@
-lib
+lib/default
+lib/provided
+lib/jetty
+lib/test
 src/main/webapp/WEB-INF/classes
 src/main/webapp/WEB-INF/lib
 target
