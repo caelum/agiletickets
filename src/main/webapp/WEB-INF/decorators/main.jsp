@@ -13,9 +13,9 @@
   	<div id="header" class="clearfix">
   		<h1>Ingresso Ágil</h1>
   		<ul id="menu">
-  			<li><a href="/">Sessões</a></li>
-  			<li><a href="/espetaculos">Espetáculos</a></li>
-  			<li><a href="/estabelecimentos">Estabelecimentos</a></li>
+  			<li><a href="<c:url value="/"/>">Sessões</a></li>
+  			<li><a href="<c:url value="/espetaculos"/>">Espetáculos</a></li>
+  			<li><a href="<c:url value="/estabelecimentos"/>">Estabelecimentos</a></li>
   		</ul>
   	</div>
   	<c:if test="${not empty errors}">
