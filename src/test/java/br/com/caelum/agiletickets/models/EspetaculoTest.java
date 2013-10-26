@@ -13,6 +13,7 @@ import org.junit.Test;
 
 import br.com.caelum.agiletickets.exceptions.DataInicioSuperiorDataFimException;
 
+
 public class EspetaculoTest {
 
 	private Espetaculo ivete;
@@ -131,6 +132,25 @@ public class EspetaculoTest {
 		Assert.assertEquals(1, sessoes.size());
 		Sessao sessao = sessoes.get(0);
 		Assert.assertEquals("26/10/13", sessao.getDia());
+		Assert.assertEquals("16:10", sessao.getHora());
+	}
+	
+	@Test
+	public void deveCriarDuasSessoesSemanais() throws Exception {
+		LocalDate inicio = new LocalDate(2013, 10, 26);
+		LocalDate fim = new LocalDate(2013, 11, 2);
+		LocalTime horario = new LocalTime(16, 10);
+		Periodicidade diaria = Periodicidade.SEMANAL;
+		List<Sessao> sessoes = ivete.criaSessoes(inicio, fim, horario, diaria);
+		
+		Assert.assertEquals(2, sessoes.size());
+		
+		Sessao sessao = sessoes.get(0);
+		Assert.assertEquals("26/10/13", sessao.getDia());
+		Assert.assertEquals("16:10", sessao.getHora());
+		
+		sessao = sessoes.get(1);
+		Assert.assertEquals("02/11/13", sessao.getDia());
 		Assert.assertEquals("16:10", sessao.getHora());
 	}
 	
