@@ -17,6 +17,8 @@ import org.joda.time.Days;
 import org.joda.time.LocalDate;
 import org.joda.time.LocalTime;
 
+import br.com.caelum.agiletickets.exceptions.DataInicioSuperiorDataFimException;
+
 @Entity
 public class Espetaculo {
 
@@ -98,6 +100,9 @@ public class Espetaculo {
       * Repare que a data da primeira sessao é sempre a data inicial.
       */
 	public List<Sessao> criaSessoes(LocalDate inicio, LocalDate fim, LocalTime horario, Periodicidade periodicidade) {
+		if (inicio.isAfter(fim)) {
+			throw new DataInicioSuperiorDataFimException();
+		}
 		int numeroDias = Days.daysBetween(inicio, fim).getDays();
 		List<Sessao> sessoes = new ArrayList<Sessao>();
 		for (int i = 0; i <= numeroDias; i++) {
