@@ -100,13 +100,11 @@ public class Espetaculo {
 		return null;
 	}
 	
-	public boolean Vagas(int qtd, int min)
-    {
+	public boolean vagas(int qtd, int min) {
         // ALUNO: Não apague esse metodo. Esse sim será usado no futuro! ;)
         int totDisp = 0;
 
-        for (Sessao s : sessoes)
-        {
+        for (Sessao s : sessoes) {
             if (s.getIngressosDisponiveis() < min) return false;
             totDisp += s.getIngressosDisponiveis();
         }
@@ -115,18 +113,15 @@ public class Espetaculo {
         else return false;
     }
 
-    public boolean Vagas(int qtd)
-    {
+    public boolean vagas(int qtd) {
         // ALUNO: Não apague esse metodo. Esse sim será usado no futuro! ;)
         int totDisp = 0;
 
-        for (Sessao s : sessoes)
-        {
+        for (Sessao s : sessoes) {
             totDisp += s.getIngressosDisponiveis();
         }
 
         if (totDisp >= qtd) return true;
         else return false;
     }
-
 }
