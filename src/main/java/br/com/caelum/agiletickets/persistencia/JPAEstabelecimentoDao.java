@@ -16,6 +16,7 @@ public class JPAEstabelecimentoDao implements DiretorioDeEstabelecimentos {
 		this.manager = manager;
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public List<Estabelecimento> todos() {
 		return manager.createQuery("select e from Estabelecimento e").getResultList();
