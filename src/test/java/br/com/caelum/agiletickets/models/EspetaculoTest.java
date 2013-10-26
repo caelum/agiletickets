@@ -1,5 +1,6 @@
 package br.com.caelum.agiletickets.models;
 
+import static org.junit.Assert.*;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
@@ -9,6 +10,8 @@ import org.joda.time.LocalDate;
 import org.joda.time.LocalTime;
 import org.junit.Assert;
 import org.junit.Test;
+
+import br.com.caelum.agiletickets.exceptions.DataInicioSuperiorDataFimException;
 
 public class EspetaculoTest {
 
@@ -110,6 +113,31 @@ public class EspetaculoTest {
 		
 		sessao = sessoes.get(1);
 		Assert.assertEquals("27/10/13", sessao.getDia());
+		Assert.assertEquals("16:10", sessao.getHora());
+	}
+	
+	@Test(expected = DataInicioSuperiorDataFimException.class)
+	public void naoDeveCriarSessoesSeInicioDepoisDoFim() throws Exception {
+		Espetaculo espetaculo = new Espetaculo();
+		LocalDate inicio = new LocalDate(2013, 10, 26);
+		LocalDate fim = new LocalDate(2013, 10, 25);
+		LocalTime horario = new LocalTime(16, 10);
+		Periodicidade diaria = Periodicidade.DIARIA;
+		espetaculo.criaSessoes(inicio, fim, horario, diaria);
+	}
+	
+	@Test
+	public void deveCriarUmaSessaoSemanal() throws Exception {
+		Espetaculo espetaculo = new Espetaculo();
+		LocalDate inicio = new LocalDate(2013, 10, 26);
+		LocalDate fim = new LocalDate(2013, 11, 1);
+		LocalTime horario = new LocalTime(16, 10);
+		Periodicidade diaria = Periodicidade.SEMANAL;
+		List<Sessao> sessoes = espetaculo.criaSessoes(inicio, fim, horario, diaria);
+		
+		Assert.assertEquals(1, sessoes.size());
+		Sessao sessao = sessoes.get(0);
+		Assert.assertEquals("26/10/13", sessao.getDia());
 		Assert.assertEquals("16:10", sessao.getHora());
 	}
 	
