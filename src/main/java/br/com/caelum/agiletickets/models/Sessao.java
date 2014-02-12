@@ -21,7 +21,7 @@ public class Sessao {
 	@ManyToOne
 	private Espetaculo espetaculo;
 
-	@Type(type="org.joda.time.contrib.hibernate.PersistentDateTime")
+	@Type(type="org.jadira.usertype.dateandtime.joda.PersistentDateTime")
 	private DateTime inicio;
 
 	private Integer duracaoEmMinutos;
