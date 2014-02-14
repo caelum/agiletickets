@@ -6,6 +6,8 @@ import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.verifyZeroInteractions;
 import static org.mockito.Mockito.when;
 
+import java.math.BigDecimal;
+
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mock;
@@ -16,6 +18,7 @@ import br.com.caelum.agiletickets.domain.Agenda;
 import br.com.caelum.agiletickets.domain.DiretorioDeEstabelecimentos;
 import br.com.caelum.agiletickets.models.Espetaculo;
 import br.com.caelum.agiletickets.models.Sessao;
+import br.com.caelum.agiletickets.models.TipoDeEspetaculo;
 import br.com.caelum.vraptor.Result;
 import br.com.caelum.vraptor.Validator;
 import br.com.caelum.vraptor.util.test.MockResult;
@@ -100,8 +103,13 @@ public class EspetaculosControllerTest {
 
 	@Test
 	public void deveReservarSeASessaoTemIngressosSuficientes() throws Exception {
+		Espetaculo espetaculo = new Espetaculo();
+		espetaculo.setTipo(TipoDeEspetaculo.TEATRO);
+
 		Sessao sessao = new Sessao();
+		sessao.setPreco(new BigDecimal("10.00"));
 		sessao.setTotalIngressos(5);
+		sessao.setEspetaculo(espetaculo);
 
 		when(agenda.sessao(1234l)).thenReturn(sessao);
 

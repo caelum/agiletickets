@@ -12,6 +12,7 @@ import org.joda.time.LocalTime;
 
 import br.com.caelum.agiletickets.domain.Agenda;
 import br.com.caelum.agiletickets.domain.DiretorioDeEstabelecimentos;
+import br.com.caelum.agiletickets.domain.precos.CalculadoraDePrecos;
 import br.com.caelum.agiletickets.models.Espetaculo;
 import br.com.caelum.agiletickets.models.Estabelecimento;
 import br.com.caelum.agiletickets.models.Periodicidade;
@@ -101,7 +102,7 @@ public class EspetaculosController {
 
 		sessao.reserva(quantidade);
 
-		BigDecimal precoTotal = sessao.getPreco().multiply(BigDecimal.valueOf(quantidade));
+		BigDecimal precoTotal = CalculadoraDePrecos.calcula(sessao, quantidade);
 
 		result.include("message", "Sessao reservada com sucesso por " + CURRENCY.format(precoTotal));
 

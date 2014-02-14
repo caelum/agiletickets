@@ -8,3 +8,4 @@ target
 tmp
 .classpath
 .project
+infinitest.filters
