@@ -1,13 +1,11 @@
 package br.com.caelum.agiletickets.domain.precos;
 
-import static org.hamcrest.number.BigDecimalCloseTo.closeTo;
-import static org.junit.Assert.assertThat;
+import static org.junit.Assert.assertEquals;
 
 import java.math.BigDecimal;
 
 import org.junit.Test;
 
-import br.com.caelum.agiletickets.domain.precos.CalculadoraDePrecos;
 import br.com.caelum.agiletickets.models.Sessao;
 import br.com.caelum.agiletickets.models.TipoDeEspetaculo;
 
@@ -23,7 +21,7 @@ public class CalculadoraDePrecosTest {
 		
 		BigDecimal precoTotal = CalculadoraDePrecos.calcula(sessao, 9);
 		
-		assertThat(precoTotal, closeTo(BigDecimal.valueOf(90.0), BigDecimal.ZERO));
+		assertEquals(0, BigDecimal.valueOf(90.0).compareTo(precoTotal));
 	}
 
 	
@@ -39,7 +37,7 @@ public class CalculadoraDePrecosTest {
 
 		BigDecimal precoTotal = CalculadoraDePrecos.calcula(sessao, 1);
 		
-		assertThat(precoTotal, closeTo(BigDecimal.valueOf(22.0), BigDecimal.ZERO));
+		assertEquals(0, BigDecimal.valueOf(22.0).compareTo(precoTotal));
 	}
 
 	@Test
@@ -54,7 +52,7 @@ public class CalculadoraDePrecosTest {
 
 		BigDecimal precoTotal = CalculadoraDePrecos.calcula(sessao, 1);
 		
-		assertThat(precoTotal, closeTo(BigDecimal.valueOf(20.0), BigDecimal.ZERO));
+		assertEquals(0, BigDecimal.valueOf(20.0).compareTo(precoTotal));
 	}
 
 	
@@ -70,7 +68,7 @@ public class CalculadoraDePrecosTest {
 
 		BigDecimal precoTotal = CalculadoraDePrecos.calcula(sessao, 1);
 		
-		assertThat(precoTotal, closeTo(BigDecimal.valueOf(110.0), BigDecimal.ZERO));
+		assertEquals(0, BigDecimal.valueOf(110.0).compareTo(precoTotal));
 	}
 
 	@Test
@@ -85,7 +83,7 @@ public class CalculadoraDePrecosTest {
 
 		BigDecimal precoTotal = CalculadoraDePrecos.calcula(sessao, 1);
 		
-		assertThat(precoTotal, closeTo(BigDecimal.valueOf(100.0), BigDecimal.ZERO));
+		assertEquals(0, BigDecimal.valueOf(100.0).compareTo(precoTotal));
 	}
 	
 	@Test
@@ -101,7 +99,7 @@ public class CalculadoraDePrecosTest {
 		
 		BigDecimal precoTotal = CalculadoraDePrecos.calcula(sessao, 1);
 		
-		assertThat(precoTotal, closeTo(BigDecimal.valueOf(600.0), BigDecimal.ZERO));
+		assertEquals(0, BigDecimal.valueOf(600.0).compareTo(precoTotal));
 	}
 
 	@Test
@@ -117,7 +115,7 @@ public class CalculadoraDePrecosTest {
 
 		BigDecimal precoTotal = CalculadoraDePrecos.calcula(sessao, 1);
 		
-		assertThat(precoTotal, closeTo(BigDecimal.valueOf(500.0), BigDecimal.ZERO));
+		assertEquals(0, BigDecimal.valueOf(500.0).compareTo(precoTotal));
 	}
 
 	@Test
@@ -133,7 +131,7 @@ public class CalculadoraDePrecosTest {
 
 		BigDecimal precoTotal = CalculadoraDePrecos.calcula(sessao, 1);
 		
-		assertThat(precoTotal, closeTo(BigDecimal.valueOf(550.0), BigDecimal.ZERO));
+		assertEquals(0, BigDecimal.valueOf(550.0).compareTo(precoTotal));
 	}
 
 	
@@ -150,7 +148,7 @@ public class CalculadoraDePrecosTest {
 		
 		BigDecimal precoTotal = CalculadoraDePrecos.calcula(sessao, 1);
 		
-		assertThat(precoTotal, closeTo(BigDecimal.valueOf(1200.0), BigDecimal.ZERO));
+		assertEquals(0, BigDecimal.valueOf(1200.0).compareTo(precoTotal));
 	}
 
 	@Test
@@ -166,7 +164,7 @@ public class CalculadoraDePrecosTest {
 
 		BigDecimal precoTotal = CalculadoraDePrecos.calcula(sessao, 1);
 		
-		assertThat(precoTotal, closeTo(BigDecimal.valueOf(1000.0), BigDecimal.ZERO));
+		assertEquals(0, BigDecimal.valueOf(1000.0).compareTo(precoTotal));
 	}
 
 	@Test
@@ -182,7 +180,7 @@ public class CalculadoraDePrecosTest {
 
 		BigDecimal precoTotal = CalculadoraDePrecos.calcula(sessao, 1);
 		
-		assertThat(precoTotal, closeTo(BigDecimal.valueOf(1300.0), BigDecimal.ZERO));
+		assertEquals(0, BigDecimal.valueOf(1300.0).compareTo(precoTotal));
 	}
 
 	
@@ -196,7 +194,7 @@ public class CalculadoraDePrecosTest {
 		
 		BigDecimal precoTotal = CalculadoraDePrecos.calcula(sessao, 1);
 		
-		assertThat(precoTotal, closeTo(BigDecimal.valueOf(10.0), BigDecimal.ZERO));
+		assertEquals(0, BigDecimal.valueOf(10.0).compareTo(precoTotal));
 	}
 
 }
