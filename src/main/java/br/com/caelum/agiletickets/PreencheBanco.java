@@ -44,9 +44,8 @@ public class PreencheBanco {
 			sessao.setEspetaculo(espetaculo);
 			sessao.setInicio(new DateTime().plusDays(7+i));
 			sessao.setDuracaoEmMinutos(60 * 3);
-			sessao.setTotalIngressos(10);
-			sessao.setIngressosReservados(10 - i);
-			sessao.setPreco(new BigDecimal("12.34"));
+			sessao.setTotalIngressos(100);
+			sessao.setPreco(new BigDecimal("50"));
 			manager.persist(sessao);
 		}
 
