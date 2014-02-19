@@ -1,4 +1,4 @@
-package br.com.caelum.agiletickets.integration.driver;
+package br.com.caelum.agiletickets.acceptance.page;
 
 import static org.hamcrest.Matchers.containsString;
 import static org.hamcrest.Matchers.is;
@@ -11,12 +11,12 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
 
-public class EstabelecimentosDriver {
+public class EstabelecimentosPage {
 
 	private static final String BASE_URL = "http://localhost:8080";
 	private final WebDriver driver;
 
-	public EstabelecimentosDriver(WebDriver driver) {
+	public EstabelecimentosPage(WebDriver driver) {
 		this.driver = driver;
 	}
 
