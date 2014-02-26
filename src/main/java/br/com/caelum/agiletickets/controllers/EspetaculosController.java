@@ -59,10 +59,10 @@ public class EspetaculosController {
 		// se nao tiver nome, avisa o usuario
 		// se nao tiver descricao, avisa o usuario
 		if (Strings.isNullOrEmpty(espetaculo.getNome())) {
-			validator.add(new ValidationMessage("Nome do espetáculo nao pode estar em branco", ""));
+			validator.add(new ValidationMessage("Nome do espetáculo não pode estar em branco", ""));
 		}
 		if (Strings.isNullOrEmpty(espetaculo.getDescricao())) {
-			validator.add(new ValidationMessage("Descricao do espetaculo nao pode estar em branco", ""));
+			validator.add(new ValidationMessage("Descrição do espetáculo não pode estar em branco", ""));
 		}
 		validator.onErrorRedirectTo(this).lista();
 
@@ -90,11 +90,11 @@ public class EspetaculosController {
 		}
 
 		if (quantidade < 1) {
-			validator.add(new ValidationMessage("Voce deve escolher um lugar ou mais", ""));
+			validator.add(new ValidationMessage("Você deve escolher um lugar ou mais", ""));
 		}
 
 		if (!sessao.podeReservar(quantidade)) {
-			validator.add(new ValidationMessage("Nao existem ingressos dispon√≠veis", ""));
+			validator.add(new ValidationMessage("Não existem ingressos disponíveis", ""));
 		}
 
 		// em caso de erro, redireciona para a lista de sessao
@@ -104,7 +104,7 @@ public class EspetaculosController {
 
 		sessao.reserva(quantidade);
 
-		result.include("message", "Sessao reservada com sucesso por " + CURRENCY.format(precoTotal));
+		result.include("message", "Sessão reservada com sucesso por " + CURRENCY.format(precoTotal));
 
 		result.redirectTo(IndexController.class).index();
 	}
@@ -127,7 +127,7 @@ public class EspetaculosController {
 
 		agenda.agende(sessoes);
 
-		result.include("message", sessoes.size() + " sessoes criadas com sucesso");
+		result.include("message", sessoes.size() + " sessões criadas com sucesso");
 		result.redirectTo(this).lista();
 	}
 
