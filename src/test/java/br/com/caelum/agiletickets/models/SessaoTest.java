@@ -15,7 +15,7 @@ public class SessaoTest {
 	}
 	
 	@Test
-	public void deveVender5ingressoSeHa10vagas() throws Exception {
+	public void deveVender5ingressosSeHa10vagas() throws Exception {
 		Sessao sessao = new Sessao();
 		sessao.setTotalIngressos(10);
 		
