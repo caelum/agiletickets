@@ -4,7 +4,7 @@
 	</head>
 	<body>
 		<h2>Criar novas sessões</h2>
-		<form action="/espetaculo/${espetaculo.id}/sessoes" method="post">
+		<form action="<c:url value="/espetaculo/${espetaculo.id}/sessoes"/>" method="post">
 			<label for="inicio">Início</label>
 			<input type="text" name="inicio" id="inicio"/>
 						
