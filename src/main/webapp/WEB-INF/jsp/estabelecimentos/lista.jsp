@@ -39,8 +39,8 @@
 				<c:forEach items="${estabelecimentoList}" var="estabelecimento">
 					<tr>
 						<td>${estabelecimento.id }</td>
-						<td>${estabelecimento.nome }</td>
-						<td>${estabelecimento.endereco }</td>
+						<td><c:out value="${estabelecimento.nome}"/></td>
+						<td><c:out value="${estabelecimento.endereco}"/></td>
 						<td>${estabelecimento.temEstacionamento ? 'Sim' : 'Não' }</td>
 					</tr>				
 				</c:forEach>

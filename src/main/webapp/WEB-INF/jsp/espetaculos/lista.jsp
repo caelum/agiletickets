@@ -22,7 +22,7 @@
 			<label for="tipo">Local:</label>
 			<select id="tipo" name="espetaculo.estabelecimento.id">
 				<c:forEach items="${estabelecimentos}" var="estabelecimento">
-					<option value="${estabelecimento.id}">${estabelecimento.nome }</option>
+					<option value="${estabelecimento.id}"><c:out value="${estabelecimento.nome}"/></option>
 				</c:forEach>
 			</select>
 			
@@ -51,8 +51,8 @@
 				<c:forEach items="${espetaculoList}" var="espetaculo">
 					<tr>
 						<td>${espetaculo.id }</td>
-						<td>${espetaculo.nome }</td>
-						<td>${espetaculo.descricao }</td>
+						<td><c:out value="${espetaculo.nome}"/></td>
+						<td><c:out value="${espetaculo.descricao}"/></td>
 						<td>${espetaculo.tipo }</td>
 						<td><a href="<c:url value="/espetaculo/${espetaculo.id}/sessoes"/>">Criar sessões</a></td>
 					</tr>				
